@@ -1,0 +1,72 @@
+<h2 class="text-center my-5">{{isEditing? 'Distort':'Spawn'}}</h2>
+
+@if(errorMessage != ''){
+<div class="text-center text-danger">
+    {{errorMessage}}
+</div>
+}
+@else {
+<form #passengerForm="ngForm" class="d-grid border rounded p-5 mb-5 w-50 mx-auto gap-3" (ngSubmit)="onSubmit()">
+    <div>
+        <label class="form-label">Prename*</label>
+        <input class="form-control" type="text" name="preName" [(ngModel)]="passenger.preName" #preName="ngModel"
+            required>
+        @if((preName.touched || preName.dirty) && preName.errors?.['required']){
+        <div class="text-danger">
+            Passenger lacking first name.
+        </div>
+        }
+    </div>
+    <div>
+        <label class="form-label">Last Name*</label>
+        <input class="form-control" type="text" name="lastName" [(ngModel)]="passenger.lastName" #lastName="ngModel"
+            required>
+        @if((lastName.touched || lastName.dirty) && lastName.errors?.['required']){
+        <div class="text-danger">
+            Passenger lacking last name.
+        </div>
+        }
+    </div>
+    <div>
+        <label class="form-label">Email*</label>
+        <input class="form-control" type="email" name="email" [(ngModel)]="passenger.email" #email="ngModel" required
+            email>
+        @if((email.touched || email.dirty)){
+        @if(email.errors?.['required']){
+        <div class="text-danger">
+            Passenger lacking email.
+        </div>
+        }
+        @else if(email.errors?.['email']){
+        <div class="text-danger">
+            Email lacking valid format.
+        </div>
+        }
+        }
+    </div>
+    <div>
+        <label class="form-label">Phone Number*</label>
+        <input class="form-control" type="phone" name="phoneNumber" [(ngModel)]="passenger.phoneNumber"
+            #phoneNumber="ngModel" required>
+        @if((phoneNumber.touched || phoneNumber.dirty) && phoneNumber.errors?.['required']){
+        <div class="text-danger">
+            Passenger lacking phone number.
+        </div>
+        }
+    </div>
+    <div>
+        <label class="form-label">Train Number*</label>
+        <input class="form-control" type="text" name="trainNumber" [(ngModel)]="passenger.trainNumber"
+            #trainNumber="ngModel" required>
+        @if((trainNumber.touched || trainNumber.dirty) && trainNumber.errors?.['required']){
+        <div class="text-danger">
+            Passenger lacking train number.
+        </div>
+        }
+    </div>
+    <div class="text-start">
+        <button class="btn btn-primary" type="submit" [disabled]="passengerForm.invalid">Send this thing to
+            Bohemia.</button>
+    </div>
+</form>
+}

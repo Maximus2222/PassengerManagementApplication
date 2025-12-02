@@ -1,0 +1,39 @@
+<h2 class="text-center my-3">Passenger gathering</h2>
+
+<div class="card">
+    <div class="card-header">
+        <p class="fs-5">The bigger picture!</p>
+    </div>
+
+    <div class="card-body table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>PreName</th>
+                    <th>LastName</th>
+                    <th>EMail</th>
+                    <th>PhoneNumber</th>
+                    <th>TrainNumber</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (passenger of passengers; track passenger.id) {
+                <tr>
+                    <td>{{passenger.id}}</td>
+                    <td>{{passenger.preName}}</td>
+                    <td>{{passenger.lastName}}</td>
+                    <td>{{passenger.email}}</td>
+                    <td>{{passenger.phoneNumber}}</td>
+                    <td>{{passenger.trainNumber}}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm m-2" (click)="editPassenger(passenger.id)">Edit</button>
+                        <button class="btn btn-danger btn-sm" (click)="deletePassenger(passenger.id)">Delete</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
